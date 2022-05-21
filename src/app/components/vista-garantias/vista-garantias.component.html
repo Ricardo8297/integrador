@@ -1,0 +1,32 @@
+<div class="container" style="margin-top: 3rem; margin-bottom: 2rem;">
+
+    <div class="row">
+
+        <div class="col">
+            <p class="fs-4">
+                Reporte
+            </p>
+
+        </div>
+        <table class="table table-success table-striped" style="margin-top: 5rem;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Folio</th>
+                    <th scope="col">Producto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reporte of reportes">
+                    <th scope="row">{{reporte.id}}</th>
+                    <td>{{reporte.codigoProducto}}</td>
+                    <td>{{reporte.motivo}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>

@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 3rem; margin-bottom: 2rem;">
+
+    <div class="row">
+
+        <div class="col">
+            <p class="fs-4">
+                Reporte
+            </p>
+            <div class="form-group">
+                <input type="text" class="form-control border" style="margin-top: 1rem;" name="filterreport" placeholder="Proovedor" [(ngModel)]="filterreport">
+
+            </div>
+        </div>
+    </div>
+    <table class="table table-success table-striped" style="margin-top: 5rem;">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Folio</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Proovedor</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reporte of reportes | fiterReabastecimiento:filterreport">
+                <th scope="row">{{reporte.id}}</th>
+                <td>{{reporte.folio}}</td>
+                <td>{{reporte.producto}}</td>
+                <td>{{reporte.proovedor}}</td>
+                <td>{{reporte.cantidad}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+</div>

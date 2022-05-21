@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control img-fluid" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" name="codigo" [(ngModel)]="producto.codigo" placeholder="Codigo" class="form-control img-fluid" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control img-fluid" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <textarea name="descripcion" rows="2" [(ngModel)]="producto.descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" name="categoria" [(ngModel)]="producto.categoria" placeholder="Categoria" class="form-control" autofocus>
+                    </div>
+                    <br>
+
+                    <br>
+                    <div class="form-group">
+                        <input type="url" name="image" [(ngModel)]="producto.imagen" placeholder="image" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" name="existencia" [(ngModel)]="producto.existencia" placeholder="Existencia" class="form-control" autofocus>
+                    </div>
+                    <br>
+                    <!--Usa la variable edit para saber si es true usa update producto si no usa saveproducto-->
+                    <button class="btn btn-success btn-block text-center" (click)="edit ? updateProductos() : saveNewProducto()">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-body text-center">
+            <!--Operador ternario-->
+            <img [src]="producto.imagen == '' ? '/assets/Noimage.png': producto.imagen" class="card-img-top">
+            <h3>{{producto.id}} - {{producto.nombre == '' ? 'Nombre del producto' : producto.nombre}}</h3>
+            <p>{{producto.codigo == '' ? 'Escribe el codigo' : producto.codigo}}</p>
+            <p>{{producto.precio == 0 ? 'Escribe el precio' : producto.precio}}</p>
+            <p>{{producto.descripcion == '' ? 'Escribe una descripcion' : producto.descripcion}}</p>
+            <p>{{producto.categoria == '' ? 'Escribe la categoria' : producto.categoria}}</p>
+            <p>{{producto.existencia == 0 ? 'Escribe la existencia' : producto.existencia}}</p>
+        </div>
+    </div>
+</div>

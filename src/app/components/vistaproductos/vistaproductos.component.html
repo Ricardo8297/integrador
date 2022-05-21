@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+
+            <div class="form-group">
+                <input type="text" class="form-control border" style="margin-top: 1rem;" name="filterproduct" placeholder="Buscar" [(ngModel)]="filterproduct">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-4" *ngFor="let producto of productos | filter:filterproduct" style="margin-top: 2rem;">
+
+            <div class="card text-center">
+                <div class="card-header bg-dark text-white d-flex justify-content-between aling-items-center">
+                    <p class="fs-4">{{producto.nombre}}</p>
+
+
+                </div>
+
+                <div class="card-body" style="color: black;">
+                    <img [src]="producto.imagen" class="card-img-top">
+                    <p>Codigo: {{producto.codigo}}</p>
+                    <p style="color: green;">Precio ${{producto.precio}}.MXN</p>
+
+                    <!--<p>{{producto.descripcion}}</p>-->
+
+                    <p style="color: teal;">{{producto.categoria}}</p>
+
+
+                    <p>Existencia:</p>
+                    <p style="color: cadetblue;"> {{producto.existencia}}</p>
+
+                </div>
+
+            </div>
+            <div class="text-center bg-light"><a class="btn btn-success" [routerLink]="['/productos/compra',producto.id]">Comprar</a></div>
+        </div>
+    </div>
+</div>

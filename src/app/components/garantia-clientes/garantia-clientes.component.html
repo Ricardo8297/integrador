@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 3rem;">
+    <h1 class="text-center"> Garantias</h1>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="codigoProducto" [(ngModel)]="garantia.codigoProducto" placeholder="codigoProducto" class="form-control img-fluid" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <textarea name="motivo" rows="2" [(ngModel)]="garantia.imagen" placeholder="URL de la imagen" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <!--Usa la variable edit para saber si es true usa update game si no usa savegame-->
+                    <div class="text-center">
+                        <button class="btn btn-success btn-block text-center" (click)="saveNewGarantia()">
+                        Guardar
+                    </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
