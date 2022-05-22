@@ -20,6 +20,8 @@ import { VentasComponent } from './components/ventas/ventas.component';
 import { VistaGarantiasClientesComponent } from './components/vista-garantias-clientes/vista-garantias-clientes.component';
 import { VistaGarantiasComponent } from './components/vista-garantias/vista-garantias.component';
 import { VistaproductosComponent } from './components/vistaproductos/vistaproductos.component';
+import { AuthGuard } from './guards/auth.guard';
+import { NoauthGuard } from './guards/noauth.guard';
 
 const routes: Routes = [
   {
@@ -68,7 +70,8 @@ const routes: Routes = [
   },
   {
     path: 'reporteCompras',
-    component: ReporteComprasComponent
+    component: ReporteComprasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'reporteCompras/add',

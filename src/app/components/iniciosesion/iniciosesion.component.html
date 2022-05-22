@@ -1,7 +1,8 @@
 <div class="container">
     <div class="abs-center">
 
-        <form action="#" class="border p-3 form centrado">
+        <form action="#" method="post" class="border p-3 form centrado">
+            <div class="alert alert-danger" role="alert" *ngIf="isError">{{error}}</div>
             <h2 class="text-center">Inicia sesion
                 <br>
                 <br>
@@ -10,14 +11,16 @@
             <br>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" name="Username" placeholder="Username" autocomplete="username" required="required" [(ngModel)]="user.names">
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña">
+                <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required="required" [(ngModel)]="user.passw">
             </div>
             <br>
-            <button type="submit" class="btn btn-warning">Login</button>
+            <div class="text-center">
+                <button (click)='login()' class="btn btn-success">Log In</button>
+            </div>
             <br>
             <br>
             <p class="centrado">No tienes cuenta? <a routerLink="/registro"> Registrate </a></p>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ReporteComprasService } from 'src/app/services/reporte-compras.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ReporteComprasComponent implements OnInit {
 
   reportes: any = [];
 
-  constructor(private reporteServices: ReporteComprasService) { }
+  constructor(private reporteServices: ReporteComprasService, private authService: AuthService) { }
   filterreport='';
   ngOnInit(): void {
     this.getReportes();

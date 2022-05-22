@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -15,7 +16,7 @@ export class NavigationComponent implements OnInit {
   productocuatro: any = [];
   productocinco: any = [];
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor( private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
     
@@ -40,7 +41,25 @@ export class NavigationComponent implements OnInit {
 }
 
 deletecarrito(){
-  localStorage.clear();
+  localStorage.removeItem("compra")
+  localStorage.removeItem("comprados") 
+  localStorage.removeItem("compratres") 
+  localStorage.removeItem("compracuatro")
+  localStorage.removeItem("compracinco") 
+}
+
+
+onCheckUser() {
+  if (this.authService.getUser() === null) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+logout(): void {
+  this.authService.logout();
+  this.router.navigate(['/']);
 }
   
 }

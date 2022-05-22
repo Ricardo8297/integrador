@@ -19,7 +19,7 @@
                 <li>
                     <a class="nav-link text-center  text-white" style="margin-top: 1px;" routerLink="/vistaproductos"><i class="fa-solid fa-bag-shopping"></i><br>Productos</a>
                 </li>
-                <li class="nav-item dropdown text-white" style="margin-top: 1px;">
+                <li *ngIf="onCheckUser()" class="nav-item dropdown text-white" style="margin-top: 1px;">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa-solid fa-hammer"></i> <br> Mas acciones</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" routerLink="/adminUsers">Administrar Usuarios</a>
@@ -58,7 +58,9 @@
             <a style="" class="nav-link text-white" routerLink="/garantiaClientes"><i class="fa-solid fa-star"></i><br>Garantias</a>
         </div>
         <div class="nav-item ">
-            <a style="" class="nav-link text-white" routerLink="/iniciosesion"><i class="fa-solid fa-arrow-right-to-bracket"></i><br>Loggin</a>
+            <ng-container *ngIf="!onCheckUser(); then thenBlock else elseBlock"></ng-container>
+            <ng-template #thenBlock><a mat-button [routerLink]="['/iniciosesion']" class="nav-link text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i><br>Loggin</a></ng-template>
+            <ng-template #elseBlock><a mat-button [routerLink]="['/']" class="nav-link text-white" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i><br>Salir</a></ng-template>
         </div>
     </div>
 </nav>
