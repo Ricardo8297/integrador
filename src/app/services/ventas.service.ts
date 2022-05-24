@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Ventas } from '../models/Ventas';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,31 +10,41 @@ import { Ventas } from '../models/Ventas';
 export class VentasService {
 
 
-   //Api
-   API_URI = 'http://localhost:3000/api'
+  //Api
+  API_URI = 'http://localhost:3000/api'
 
-   constructor(private http: HttpClient) { }
-    
-   
-   getVentas(){
-     return this.http.get(`${this.API_URI}/ventas`);
-    }
- 
-    getVenta(id: string){
-     return this.http.get(`${this.API_URI}/ventas/${id}`);
-    }
- 
-    deleteVenta(id: string){
-     return this.http.delete(`${this.API_URI}/ventas/${id}`);
-    }
- 
-    //Necesito un juego de tipo juego
-    saveVenta(venta: Ventas){
-     return this.http.post(`${this.API_URI}/ventas`,venta);
-    }
- 
-    updateVenta(id: string|number,updateVenta: Ventas){
-     return this.http.put(`${this.API_URI}/ventas/${id}`, updateVenta);
-    }
- 
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+
+  getVentas() {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.get(`${this.API_URI}/ventas`, { headers });
+  }
+
+  getVenta(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.get(`${this.API_URI}/ventas/${id}`, { headers });
+  }
+
+  deleteVenta(id: string) {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.delete(`${this.API_URI}/ventas/${id}`, { headers });
+  }
+
+  //Necesito un juego de tipo juego
+  saveVenta(venta: Ventas) {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.post(`${this.API_URI}/ventas`, venta, { headers });
+  }
+
+  updateVenta(id: string | number, updateVenta: Ventas) {
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.put(`${this.API_URI}/ventas/${id}`, updateVenta, { headers });
+  }
+
 }

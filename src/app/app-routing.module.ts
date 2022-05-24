@@ -42,7 +42,8 @@ const routes: Routes = [
   },
   {
     path: 'adminUsers',
-    component: AdministrarUsuariosComponent
+    component: AdministrarUsuariosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'registro',
@@ -75,7 +76,8 @@ const routes: Routes = [
   },
   {
     path: 'reporteCompras/add',
-    component: ReporteComprasFormComponent
+    component: ReporteComprasFormComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'vistaproductos',
@@ -91,22 +93,27 @@ const routes: Routes = [
   },
   {
     path: 'reabastecimiento',
-    component: ReabastecimientoComponent
+    component: ReabastecimientoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ventas',
-    component: VentasComponent
+    component: VentasComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'garantiaadmin',
-    component: GarantiaAdminComponent
+    component: GarantiaAdminComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'garantiaadmin/vista',
-    component: VistaGarantiasComponent
+    component: VistaGarantiasComponent,
+    canActivate: [AuthGuard]
   },{
     path: 'garantiaClientes/vista',
-    component: VistaGarantiasClientesComponent
+    component: VistaGarantiasClientesComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
