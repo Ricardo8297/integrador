@@ -19,7 +19,12 @@
                 <li>
                     <a class="nav-link text-center  text-white" style="margin-top: 1px;" routerLink="/vistaproductos"><i class="fa-solid fa-bag-shopping"></i><br>Productos</a>
                 </li>
-                <li *ngIf="onCheckUser()" class="nav-item dropdown text-white" style="margin-top: 1px;">
+                <li>
+                    <div *ngIf="typeUser() == 1 || typeUser() == 2">
+                        <a class="nav-link text-center  text-white" style="margin-top: 1px;" routerLink="/reabastecimiento"><i class="fa-solid fa-truck-moving"></i><br>Reabastecer</a>
+                    </div>
+                </li>
+                <li *ngIf="onCheckUser() && typeUser() == 1" class="nav-item dropdown text-white" style="margin-top: 1px;">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa-solid fa-hammer"></i> <br> Mas acciones</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" routerLink="/adminUsers">Administrar Usuarios</a>
@@ -45,17 +50,22 @@
             <a (click)="reloadCurrentRoute()" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-cart-arrow-down"></i><br>Carrito</a>
             <div class="dropdown-menu text-white">
 
-                <p class="dropdown-item">{{productos.nombre}}</p>
-                <p class="dropdown-item">{{productodos.nombre}}</p>
-                <p class="dropdown-item">{{productotres.nombre}}</p>
-                <p class="dropdown-item">{{productocuatro.nombre}}</p>
-                <p class="dropdown-item">{{productocinco.nombre}}</p>
+                <div *ngFor="let item of items">
+                    <p class="dropdown-item">{{item.product.nombre}}</p>
+
+                </div>
+
+
                 <div class="dropdown-divider"></div>
-                <div class="text-center"><button class="btn btn-danger" (click)="deletecarrito()">Eliminar carrito</button></div>
+
+                <div class="d-grid gap-2 d-md-block text-center">
+                    <button class="btn btn-success  btn-sm" routerLink="/carrito" type="button">Carrito</button>
+                    <a class="btn btn-danger  btn-sm" href="#" (click)="deletecarrito()" type="button">Borrar</a>
+                </div>
             </div>
         </div>
         <div class="nav-item ">
-            <a style="" class="nav-link text-white" routerLink="/garantiaClientes"><i class="fa-solid fa-star"></i><br>Garantias</a>
+            <a class="nav-link text-white" routerLink="/garantiaClientes"><i class="fa-solid fa-star"></i><br>Garantias</a>
         </div>
         <div class="nav-item ">
             <ng-container *ngIf="!onCheckUser(); then thenBlock else elseBlock"></ng-container>

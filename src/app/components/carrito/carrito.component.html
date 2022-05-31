@@ -3,144 +3,38 @@
 
     <div class="row">
 
-        <div class="col-9">
+        <div class="col-9" *ngFor="let item of items">
 
             <div class="row">
                 <div class="col-3">
-                    <img [src]="productos.imagen" class="card-img-top">
+                    <img [src]="item.product.imagen" class="card-img-top">
                 </div>
                 <div class="col-8">
-                    <p>{{productos.nombre}}</p>
-                    <div *ngIf="productos.existencia > 0">
+                    <p>{{item.product.id}}</p>
+                    <div *ngIf="item.product.existencia > 0">
                         <p style="color: greenyellow;">Disponible</p>
                         <br>
-                        <input type="number" class="form-control" placeholder="Cantidad">
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div *ngIf="productos.precio> 0">
-                        <h5>Precio c/u</h5>
-                        <p style="color: green;">${{productos.precio}}</p>
-
-                        <button class="btn btn-danger btn-sm" (click)="eliminar('compra')">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="row">
-                <div class="col-3">
-                    <img [src]="productodos.imagen" class="card-img-top">
-                </div>
-                <div class="col-8">
-                    <p>{{productodos.nombre}}</p>
-                    <div *ngIf="productodos.existencia > 0">
-                        <p style="color: greenyellow;">Disponible</p>
-                        <br>
-                        <input type="number" class="form-control" placeholder="Cantidad">
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div *ngIf="productodos.precio> 0">
-                        <h5>Precio c/u</h5>
-                        <p style="color: green;">${{productodos.precio}}</p>
-                        <button class="btn btn-danger btn-sm" (click)="eliminar('comprados')">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="row">
-                <div class="col-3">
-                    <img [src]="productotres.imagen" class="card-img-top">
-                </div>
-                <div class="col-8">
-                    <p>{{productotres.nombre}}</p>
-                    <div *ngIf="productotres.existencia > 0">
-                        <p style="color: greenyellow;">Disponible</p>
-                        <br>
-                        <input type="number" class="form-control" placeholder="Cantidad">
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div *ngIf="productotres.precio> 0">
-                        <h5>Precio c/u</h5>
-                        <p style="color: green;">${{productotres.precio}}</p>
-                        <button class="btn btn-danger btn-sm" (click)="eliminar('compratres')">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="row">
-                <div class="col-3">
-                    <img [src]="productocuatro.imagen" class="card-img-top">
-                </div>
-                <div class="col-8">
-                    <p>{{productocuatro.nombre}}</p>
-                    <div *ngIf="productocuatro.existencia > 0">
-                        <p style="color: greenyellow;">Disponible</p>
-                        <br>
+                        <p>Pedidos {{item.quantity}}</p>
                         <input type="number" class="form-control" placeholder="Cantidad">
                     </div>
                 </div>
 
                 <div class="col-1">
-                    <div *ngIf="productocuatro.precio> 0">
+
+
+                    <div *ngIf="item.product.precio> 0">
                         <h5>Precio c/u</h5>
-                        <p style="color: green;">${{productocuatro.precio}}</p>
-                        <button class="btn btn-danger btn-sm" (click)="eliminar('compracuatro')">Eliminar</button>
+                        <p style="color: green;">${{item.product.precio}}</p>
+
+                        <button class="btn btn-danger btn-sm" (click)="deleteItem(item.product.nombre)">Eliminar</button>
                     </div>
-                </div>
-
-            </div>
-
-
-
-
-
-            <div class="row">
-                <div class="col-3">
-                    <img [src]="productocinco.imagen" class="card-img-top">
-                </div>
-                <div class="col-8">
-                    <p>{{productocinco.nombre}}</p>
-                    <div *ngIf="productocinco.existencia > 0">
-                        <p style="color: greenyellow;">Disponible</p>
-                        <br>
-                        <input type="number" class="form-control" placeholder="Cantidad">
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div *ngIf="productocinco.precio> 0">
-                        <h5>Precio c/u</h5>
-                        <p style="color: green;">${{productocinco.precio}}</p>
-                        <button class="btn btn-danger btn-sm" (click)="eliminar('compracinco')">Eliminar</button>
-                    </div>
-
                 </div>
             </div>
-
-
         </div>
-
-
-
         <div class="col-3">
-
-
             <div class="text-center">
-
                 <h4>${{total}}</h4><br>
-                <button class="btn btn-success">Proceder a pagar</button>
+                <button class="btn btn-success btn-sm">Proceder a pagar</button>
             </div>
         </div>
     </div>
-</div>

@@ -30,6 +30,7 @@ export class AuthService {
     }*/
 
   login(user: UserI): Observable<JwtResponseI> {
+    
     return this.http.post<JwtResponseI>(`${this.API_UR}auth/login`,
       user).pipe(tap(
         (res: JwtResponseI) => {
@@ -52,6 +53,16 @@ export class AuthService {
     if (!isNullOrUndefined(userString)) {
       const user: JwtResponseI = JSON.parse(userString);
       return user;
+    } else {
+      return null;
+    }
+  }
+
+  getTypeUser() {
+    const userString = localStorage.getItem('currentUser');
+    if (!isNullOrUndefined(userString)) {
+      const user: JwtResponseI = JSON.parse(userString);
+      return user.dataUser.typeUser;
     } else {
       return null;
     }

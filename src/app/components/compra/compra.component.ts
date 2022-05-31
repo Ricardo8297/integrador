@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService } from 'src/app/services/productos.ts.service';
 
+
+
+
 @Component({
   selector: 'app-compra',
   templateUrl: './compra.component.html',
@@ -19,17 +22,18 @@ export class CompraComponent implements OnInit {
     imagen: '',
     existencia: 0
   };
-
+ items : any = [];
   edit: Boolean = false;
 
   constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
     const params = this.activatedRoute.snapshot.params;
-    if  (params['id']){
+    if (params['id']) {
       this.productosService.getProducto(params['id']).subscribe(
-        res =>{
-          console.log(res);
+        res => {
+          //*console.log(res);
           this.producto = res;
           this.edit = true;
         },
@@ -39,28 +43,106 @@ export class CompraComponent implements OnInit {
     this.obtener_localstorage();
   }
 
-  grabar_localstorage(){
-    if(!localStorage.getItem('compra')){
-      localStorage.setItem('compra', JSON.stringify(this.producto));
-    }else if(!localStorage.getItem('comprados')){
-      localStorage.setItem('comprados', JSON.stringify(this.producto));
-    }else if(!localStorage.getItem('compratres')){
-      localStorage.setItem('compratres', JSON.stringify(this.producto));
-    }else if(!localStorage.getItem('compracuatro')){
-      localStorage.setItem('compracuatro', JSON.stringify(this.producto));
-    }else if(!localStorage.getItem('compracinco')){
-      localStorage.setItem('compracinco', JSON.stringify(this.producto));
-    }else{
-      console.log("error")
+  grabar_localstorage() {
+    let local_storage;
+    let itemsInCart = []
+    this.items = {
+      product: this.producto,
+      quantity: 1,
     }
-    this.router.navigate(['/carrito']);
+    console.log(this.items)
+    if(localStorage.getItem('cart')  == null){
+      local_storage =[];
+      console.log("LOCALSTORAGE NULL",JSON.parse(localStorage.getItem('cart') || '{}'));
+      itemsInCart.push(this.items);
+      localStorage.setItem('cart', JSON.stringify(itemsInCart));
+      console.log('Pushed first Item: ', itemsInCart);
+      this.router.navigate(['/carrito']);
+    }else{
+      local_storage = JSON.parse(localStorage.getItem('cart') || '{}');
+      console.log("LOCAL STORAGE HAS ITEMS",JSON.parse(localStorage.getItem('cart') || '{}'));
+      for(var i in local_storage)
+      {
+        console.log(local_storage[i].product.id);
+        if(this.items.product.id == local_storage[i].product.id)
+        {
+          local_storage[i].quantity += 1;
+          console.log("Quantity for "+i+" : "+ local_storage[i].quantity);
+          console.log('same product! index is ', i); 
+          this.items=null;
+          break;  
+        }
+    }
+    if(this.items){
+      itemsInCart.push(this.items);
+    }
+    local_storage.forEach(function (item: any){
+      itemsInCart.push(item);
+    })
+    localStorage.setItem('cart', JSON.stringify(itemsInCart));
+   this.router.navigate(['/carrito']);
   }
+}
 
-  
-  
 
-  obtener_localstorage(){
+  obtener_localstorage() {
     let compra = JSON.parse(localStorage.getItem("compra") || '{}');
   }
 
+
+  
+
 }
+
+
+
+// !
+// ? 
+// TODO 
+// * 
+////
+
+/* 
+let productId = 29;
+    
+    let storageProducts = JSON.parse(localStorage.getItem('products') || '{}');
+    let products = storageProducts.filter((product: { productId: number; }) => product.productId !== productId );
+    localStorage.setItem('products', JSON.stringify(products));)
+   
+//? Funcion con cantidad
+ let products;
+    let itemsInCart = []
+    this.items = {
+      product: this.producto,
+      quantity: 1,
+    }
+    if(localStorage.getItem('cart')  == null){
+      products =[];
+      console.log("LOCALSTORAGE NULL",JSON.parse(localStorage.getItem('cart') || '{}'));
+      itemsInCart.push(this.items);
+      localStorage.setItem('cart', JSON.stringify(itemsInCart));
+      console.log('Pushed first Item: ', itemsInCart);
+    }
+    else
+    {
+      products = JSON.parse(localStorage.getItem('cart')|| '{}');
+      console.log("LOCAL STORAGE HAS ITEMS",JSON.parse(localStorage.getItem('cart')|| '{}'));
+      for(var i in products)
+      {
+        console.log(products[i].producto.id);
+        if(this.items.producto.id == products[i].producto.id)
+        {
+          products[i].quantity += 1;
+          console.log("Quantity for "+i+" : "+ products[i].quantity);
+          console.log('same product! index is ', i); 
+          ////items=null;
+          break;  
+        }
+    
+
+        
+          
+   
+      }
+    }
+ **/

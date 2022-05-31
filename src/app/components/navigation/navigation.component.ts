@@ -9,57 +9,60 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
+  items: any = [];
 
-  productos: any = [];
-  productodos: any = [];
-  productotres: any = [];
-  productocuatro: any = [];
-  productocinco: any = [];
-
-  constructor( private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+
     this.obtener_localstorage();
+    //? console.log(this.items,"items");
   }
 
-  obtener_localstorage(){
-    let compra = JSON.parse(localStorage.getItem("compra") || '{}');
-    let comprados = JSON.parse(localStorage.getItem("comprados") || '{}');
-    let compratres = JSON.parse(localStorage.getItem("compratres") || '{}');
-    let compracuatro = JSON.parse(localStorage.getItem("compracuatro") || '{}');
-    let compracinco = JSON.parse(localStorage.getItem("compracinco") || '{}');
-    this.productos = compra;
-    this.productodos = comprados;
-    this.productotres = compratres;
-    this.productocuatro = compracuatro;
-    this.productocinco = compracinco;
+  obtener_localstorage() {
+
+    this.items = JSON.parse(localStorage.getItem('cart') || '{}');
+   
+   
   }
 
   reloadCurrentRoute() {
-    this.ngOnInit();
-}
-
-deletecarrito(){
-  localStorage.removeItem("compra")
-  localStorage.removeItem("comprados") 
-  localStorage.removeItem("compratres") 
-  localStorage.removeItem("compracuatro")
-  localStorage.removeItem("compracinco") 
-}
-
-
-onCheckUser() {
-  if (this.authService.getUser() === null) {
-    return false;
-  } else {
-    return true;
+   this.ngOnInit();
   }
-}
 
-logout(): void {
-  this.authService.logout();
-  this.router.navigate(['/']);
-}
-  
+  deletecarrito() {
+    localStorage.removeItem("cart");
+    this.reloadCurrentRoute()
+    
+  }
+
+
+  onCheckUser() {
+    if (this.authService.getUser() === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  typeUser() {
+    if (this.authService.getTypeUser() === 1) {
+      return 1;
+    } else if(this.authService.getTypeUser() === 2) {
+      return 2;
+    }else{
+      return 3;
+    }
+  }
+
+  numberOfItems(){
+    let itemsInCart = JSON.parse(localStorage.getItem('cart') || '{}');
+    return itemsInCart.length;
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
 }
