@@ -37,6 +37,9 @@ import { GarantiaAdminService } from './services/garantia-admin.service';
 import { GarantiaService } from './services/garantia.service';
 import { VistaGarantiasComponent } from './components/vista-garantias/vista-garantias.component';
 import { VistaGarantiasClientesComponent } from './components/vista-garantias-clientes/vista-garantias-clientes.component';
+import { FormadepagoComponent } from './components/formadepago/formadepago.component';
+import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/formadepago-tarjeta.component';
+
 
 
 
@@ -68,7 +71,10 @@ import { VistaGarantiasClientesComponent } from './components/vista-garantias-cl
     CompraComponent,
     GarantiaAdminComponent,
     VistaGarantiasComponent,
-    VistaGarantiasClientesComponent
+    VistaGarantiasClientesComponent,
+    FormadepagoComponent,
+    FormadepagoTarjetaComponent,
+
   ],
   imports: [
     BrowserModule,

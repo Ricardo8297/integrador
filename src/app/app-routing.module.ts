@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdministrarUsuariosComponent } from './components/administrar-usuarios/administrar-usuarios.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CompraComponent } from './components/compra/compra.component';
+import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/formadepago-tarjeta.component';
+import { FormadepagoComponent } from './components/formadepago/formadepago.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GarantiaAdminComponent } from './components/garantia-admin/garantia-admin.component';
@@ -114,6 +116,12 @@ const routes: Routes = [
     path: 'garantiaClientes/vista',
     component: VistaGarantiasClientesComponent,
     canActivate: [AuthGuard]
+  },{
+    path: 'formadepago',
+    component: FormadepagoComponent
+  },{
+    path: 'tarjeta',
+    component: FormadepagoTarjetaComponent
   }
 ];
 

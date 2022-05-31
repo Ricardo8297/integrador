@@ -50,19 +50,20 @@
             <a (click)="reloadCurrentRoute()" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-cart-arrow-down"></i><br>Carrito</a>
             <div class="dropdown-menu text-white">
 
+
                 <div *ngFor="let item of items">
                     <p class="dropdown-item">{{item.product.nombre}}</p>
-
                 </div>
-
 
                 <div class="dropdown-divider"></div>
 
                 <div class="d-grid gap-2 d-md-block text-center">
                     <button class="btn btn-success  btn-sm" routerLink="/carrito" type="button">Carrito</button>
-                    <a class="btn btn-danger  btn-sm" href="#" (click)="deletecarrito()" type="button">Borrar</a>
+                    <a class="btn btn-danger  btn-sm" href="#" (click)="eliminar()" type="button">Borrar</a>
                 </div>
+
             </div>
+
         </div>
         <div class="nav-item ">
             <a class="nav-link text-white" routerLink="/garantiaClientes"><i class="fa-solid fa-star"></i><br>Garantias</a>

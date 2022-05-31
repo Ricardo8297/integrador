@@ -62,6 +62,7 @@ export class AuthService {
     const userString = localStorage.getItem('currentUser');
     if (!isNullOrUndefined(userString)) {
       const user: JwtResponseI = JSON.parse(userString);
+
       return user.dataUser.typeUser;
     } else {
       return null;

@@ -16,14 +16,14 @@ export class CarritoComponent implements OnInit {
   ngOnInit(): void {
     
     this.obtener_localstorage();
-
+    this.totalCompra();
     
   }
 
   obtener_localstorage() {
 
     this.items = JSON.parse(localStorage.getItem('cart') || '{}');
-   
+    
    
   }
 
@@ -56,7 +56,18 @@ export class CarritoComponent implements OnInit {
   }
 
   totalCompra(){
+    let shopping_cart = [];
+    let suma = 0;
+    let total = 0;
+    let multi = 0;
+    shopping_cart = JSON.parse(localStorage.getItem('cart') || '{}');
     
+    for(let i in shopping_cart){
+      suma = shopping_cart[i].quantity;
+      multi = shopping_cart[i].product.precio;
+      total += suma * multi;  
+    }
+    return total;
   }
 
 }

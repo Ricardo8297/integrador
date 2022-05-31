@@ -30,10 +30,9 @@ export class NavigationComponent implements OnInit {
    this.ngOnInit();
   }
 
-  deletecarrito() {
-    localStorage.removeItem("cart");
-    this.reloadCurrentRoute()
-    
+  eliminar(){
+    localStorage.removeItem('cart');
+    this.router.navigate(['/carrito']);
   }
 
 
@@ -47,10 +46,13 @@ export class NavigationComponent implements OnInit {
 
   typeUser() {
     if (this.authService.getTypeUser() === 1) {
+      //console.log(this.authService.getTypeUser(),"1")
       return 1;
     } else if(this.authService.getTypeUser() === 2) {
       return 2;
+      //console.log(this.authService.getTypeUser(),"2")
     }else{
+      //console.log(this.authService.getTypeUser(),"3")
       return 3;
     }
   }
