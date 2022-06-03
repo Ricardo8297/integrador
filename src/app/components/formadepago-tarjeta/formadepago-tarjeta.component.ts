@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductosService } from 'src/app/services/productos.ts.service';
+import { ReabastecimientoService } from 'src/app/services/reabastecimiento.service';
 import { VentasService } from 'src/app/services/ventas.service';
 
 @Component({
@@ -30,7 +31,14 @@ export class FormadepagoTarjetaComponent implements OnInit {
   cantidad: 0,
   fecha: new Date()
   }
-  constructor(private authservice: AuthService ,private productosservice: ProductosService,private ventasService: VentasService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  reabastecimiento: any = {
+    id: 0,
+    folio: 0,
+    producto: '',
+    proovedor: '',
+    cantidad: 0,
+  }
+  constructor(private reabastecimientoService:ReabastecimientoService, private authservice: AuthService ,private productosservice: ProductosService,private ventasService: VentasService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     
@@ -86,6 +94,18 @@ export class FormadepagoTarjetaComponent implements OnInit {
       aux2 = shopping_cart[i].product.existencia;
       nuevaexistencia = aux2 - aux;
       this.producto.existencia = nuevaexistencia;
+      if(this.producto.existencia <= 0){
+        this.reabastecimiento.folio = 0;
+        this.reabastecimiento.producto = shopping_cart[i].product.nombre;
+        this.reabastecimiento.proovedor = shopping_cart[i].product.proovedor;
+        this.reabastecimiento.cantidad = 20;
+        this.reabastecimientoService.saveReporteCompras(this.reabastecimiento).subscribe(
+          res => {
+            console.log(res)
+          },
+          err => console.log(err)
+        )
+      }
       this.producto.proovedor = shopping_cart[i].product.proovedor;
       console.log(this.producto)
       this.productosservice.updateProductos(shopping_cart[i].product.id, this.producto)

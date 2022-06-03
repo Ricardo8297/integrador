@@ -2,43 +2,43 @@
     <div class="col-md-4 offset-md-2">
         <div class="card">
             <div class="card-body">
-                <form>
+                <form ngNativeValidate (submit)="edit ? updateProductos() : saveNewProducto()">
                     <div class="form-group">
-                        <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control img-fluid" autofocus>
+                        <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control img-fluid" autofocus required maxlength="40">
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="text" name="codigo" [(ngModel)]="producto.codigo" placeholder="Codigo" class="form-control img-fluid" autofocus>
+                        <input type="text" name="codigo" [(ngModel)]="producto.codigo" placeholder="Codigo" class="form-control img-fluid" autofocus required minlength="13" required pattern="[A-Za-z0-9]+">
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control img-fluid" autofocus>
+                        <input type="number" name="precio" [(ngModel)]="producto.precio" class="form-control img-fluid" autofocus min="1" maxlength="5" pattern="^[0-9]+" required>
                     </div>
                     <br>
                     <div class="form-group">
-                        <textarea name="descripcion" rows="2" [(ngModel)]="producto.descripcion" placeholder="Descripcion" class="form-control"></textarea>
+                        <textarea name="descripcion" rows="2" [(ngModel)]="producto.descripcion" placeholder="Descripcion" class="form-control" required maxlength="75"></textarea>
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="text" name="categoria" [(ngModel)]="producto.categoria" placeholder="Categoria" class="form-control" autofocus>
+                        <input type="text" name="categoria" [(ngModel)]="producto.categoria" placeholder="Categoria" class="form-control" autofocus required>
                     </div>
                     <br>
 
                     <br>
                     <div class="form-group">
-                        <input type="url" name="image" [(ngModel)]="producto.imagen" placeholder="image" class="form-control">
+                        <input type="url" name="image" [(ngModel)]="producto.imagen" placeholder="image" class="form-control" required>
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="number" name="existencia" [(ngModel)]="producto.existencia" placeholder="Existencia" class="form-control" autofocus>
+                        <input type="number" name="existencia" [(ngModel)]="producto.existencia" placeholder="Existencia" class="form-control" autofocus min="1" pattern="^[0-9]+" maxlength="4" required>
                     </div>
                     <br>
                     <div class="form-group">
-                        <input type="text" name="proovedor" [(ngModel)]="producto.proovedor" placeholder="Proovedor" class="form-control" autofocus>
+                        <input type="text" name="proovedor" [(ngModel)]="producto.proovedor" placeholder="Proovedor" class="form-control" autofocus required>
                     </div>
                     <br>
                     <!--Usa la variable edit para saber si es true usa update producto si no usa saveproducto-->
-                    <button class="btn btn-success btn-block text-center" (click)="edit ? updateProductos() : saveNewProducto()">
+                    <button class="btn btn-success btn-block text-center">
                         Guardar
                     </button>
                 </form>

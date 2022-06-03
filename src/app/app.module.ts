@@ -40,6 +40,9 @@ import { VistaGarantiasClientesComponent } from './components/vista-garantias-cl
 import { FormadepagoComponent } from './components/formadepago/formadepago.component';
 import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/formadepago-tarjeta.component';
 import { GraciasComponent } from './components/gracias/gracias.component';
+import { InventarioComponent } from './components/inventario/inventario.component';
+import { FiterInventarioPipe } from './pipes/inventario.pipe';
+
 
 
 
@@ -76,6 +79,8 @@ import { GraciasComponent } from './components/gracias/gracias.component';
     FormadepagoComponent,
     FormadepagoTarjetaComponent,
     GraciasComponent,
+    InventarioComponent,
+    FiterInventarioPipe
 
   ],
   imports: [

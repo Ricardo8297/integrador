@@ -11,6 +11,7 @@ import { GarantiaAdminComponent } from './components/garantia-admin/garantia-adm
 import { GarantiaClientesComponent } from './components/garantia-clientes/garantia-clientes.component';
 import { GraciasComponent } from './components/gracias/gracias.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
+import { InventarioComponent } from './components/inventario/inventario.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -126,6 +127,9 @@ const routes: Routes = [
   },{
     path: 'gracias',
     component: GraciasComponent
+  },{
+    path: 'inventario',
+    component: InventarioComponent
   }
 ];
 

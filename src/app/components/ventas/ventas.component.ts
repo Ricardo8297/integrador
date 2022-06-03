@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VentasService } from 'src/app/services/ventas.service';
 
+
 @Component({
   selector: 'app-ventas',
   templateUrl: './ventas.component.html',
@@ -68,4 +69,6 @@ export class VentasComponent implements OnInit {
       err => console.error(err)
     );
   }
+
+  
 }
