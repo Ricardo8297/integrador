@@ -43,40 +43,32 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
                 <th scope="col">Rol</th>
-                <th scope="col">Fecha de registro</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2"></td>
-                <td></td>
+            <tr *ngFor="let usuario of usuarios">
+                <th scope="row">{{usuario.id}}</th>
+
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellidop}}</td>
+                <div *ngIf="usuario.tipo_usuario == 1">
+                    <td>Administrador</td>
+                </div>
+                <div *ngIf="usuario.tipo_usuario == 2">
+                    <td>Proovedor</td>
+                </div>
+                <div *ngIf="usuario.tipo_usuario == 3">
+                    <td>Usuario</td>
+                </div>
+                <td><button type="button" class="btn-danger" (click)="deleteUsuarios(usuario.id)">Eliminar</button></td>
             </tr>
         </tbody>
     </table>
 
 
 
-    <div class="row" style="text-align: center; margin-top: 2rem;">
-        <div class="col-md-6">
-            <button type="button" class="btn btn-success " routerLink="">Editar</button>
-        </div>
-        <div class="col-md-6">
-            <button type="button" class="btn btn-danger ">Eliminar</button>
-        </div>
 
-    </div>
 </div>

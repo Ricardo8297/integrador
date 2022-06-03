@@ -94,6 +94,15 @@ export class AuthService {
   /**validateToken(token: ValideI,tipo: ValideI): Observable<ValideI> {
     return this.http.post<ValideI>(`${this.API_UR}auth/validate_token`, token,tipo);
   } */
+
+  
+  getUsuarios(){
+    return this.http.get(`${this.API_UR}auth`);
+   }
+
+   deleteUsuario(id: string){
+    return this.http.delete(`${this.API_UR}auth/${id}`);
+   }
 }
 
 

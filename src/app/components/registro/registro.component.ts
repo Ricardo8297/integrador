@@ -20,7 +20,12 @@ export class RegistroComponent implements OnInit {
   user: registroI = {
     names: '',
     passw: '',
-    passwc: ''
+    passwc: '',
+    apellidop: '',
+    apellidom: '',
+    direccion: '',
+    telefono: 0,
+    email: ''
   };
   constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     
