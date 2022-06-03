@@ -1,8 +1,8 @@
 export interface Ventas{
     id?: number;
-    folio?: number;
+    total?: number;
     producto?: string;
-    proovedor?: string;
+    comprador?: string;
     cantidad?: number;
     fecha?: Date;
 }

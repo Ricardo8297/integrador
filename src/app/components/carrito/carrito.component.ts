@@ -184,4 +184,16 @@ export class CarritoComponent implements OnInit {
     );
    
   }
+
+  estadoCarrito(){
+    //console.log(this.items[0])
+    this.reloadCurrentRoute();
+    if(this.items[0] == undefined){
+      this.reloadCurrentRoute();
+      return false;
+    }else{
+      this.reloadCurrentRoute();
+      return true
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { fechas } from '../models/fechas';
 
 import { Ventas } from '../models/Ventas';
 import { AuthService } from './auth.service';
@@ -46,5 +47,9 @@ export class VentasService {
       .set('Authorization', 'Bearer ' + this.authService.getToken());
     return this.http.put(`${this.API_URI}/ventas/${id}`, updateVenta, { headers });
   }
-
+  getporFechas(fecha : fechas){
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + this.authService.getToken());
+    return this.http.post(`${this.API_URI}/ventas/buscar/uno`,fecha,{ headers });
+  }
 }

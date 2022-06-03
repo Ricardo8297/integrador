@@ -20,14 +20,14 @@ export class AuthGuard implements CanActivate {
   private isError = false;
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    console.log("a")
+   // console.log("a")
     if (this.authService.getUser()) {
-      console.log("b")
+      //console.log("b")
       this.user.dataUser.accessToken = this.authService.getToken();
       return this.authService.validateToken(this.user).
         pipe(
           map((res) => {
-            console.log("c")
+           // console.log("c")
             if (res.dataUser.accessToken === '') {
               console.log("d")
               Swal.fire(
@@ -37,14 +37,14 @@ export class AuthGuard implements CanActivate {
                   text: '¡La sesión ha caducado por favor ingrese de nuevo!',
                 }
               );
-              console.log('antes de logout');
+              //console.log('antes de logout');
               this.authService.logout();
-              console.log('antes route');
+              //console.log('antes route');
               this.router.navigate(['/iniciosesion']);
-              console.log('antes de mandar false');
+              //console.log('antes de mandar false');
               return false;
             } else {
-              console.log("e")
+              //console.log("e")
               
               return true;
             }
@@ -58,11 +58,11 @@ export class AuthGuard implements CanActivate {
         text: '¡La sesión ha caducado por favor ingrese de nuevo!',
       }
     );
-    console.log('antes de logout');
+    //console.log('antes de logout');
     this.authService.logout();
-    console.log('antes route');
+    //console.log('antes route');
     this.router.navigate(['/iniciosesion']);
-    console.log('antes de mandar false');
+    //console.log('antes de mandar false');
     return false;
   }
 }

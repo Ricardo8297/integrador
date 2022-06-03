@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProductosService } from 'src/app/services/productos.ts.service';
 import { VentasService } from 'src/app/services/ventas.service';
 
@@ -20,17 +21,19 @@ export class FormadepagoTarjetaComponent implements OnInit {
     existencia: 0,
     proovedor: ''
   };
+  usuariocomprando: any = [];
   venta: any = {
   id: 0,
-  folio: 0,
+  total: 0,
   producto: '',
-  proovedor: '',
+  comprador: '',
   cantidad: 0,
   fecha: new Date()
   }
-  constructor(private productosservice: ProductosService,private ventasService: VentasService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private authservice: AuthService ,private productosservice: ProductosService,private ventasService: VentasService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
   }
   saveNewVenta(){
     delete this.venta.fecha;
@@ -40,17 +43,20 @@ export class FormadepagoTarjetaComponent implements OnInit {
     let shopping_cart = [];
     let cantidadlocal = 0;
     let productos = '';
-    let proovedores = '';
+
+    
+
     shopping_cart = JSON.parse(localStorage.getItem('cart') || '{}');
     
     for(let i in shopping_cart){
       productos += shopping_cart[i].product.nombre + "\n";
       cantidadlocal += shopping_cart[i].quantity;
-      proovedores += shopping_cart[i].product.proovedor + "\n";
+
     }
-    this.venta.folio = '';
+    this.venta.total = this.totalCompra();
     this.venta.producto = productos;
-    this.venta.proovedor = proovedores;
+ 
+    this.venta.comprador = this.getUser();
     this.venta.cantidad = cantidadlocal; 
     
 
@@ -91,8 +97,9 @@ export class FormadepagoTarjetaComponent implements OnInit {
     )
     }
     localStorage.removeItem('cart');
-    this.router.navigate([this.router.url])
+    //this.router.navigate([this.router.url])
     this.router.navigate(['/gracias']);
+   
     
   }
   totalCompra(){
@@ -108,6 +115,15 @@ export class FormadepagoTarjetaComponent implements OnInit {
       total += suma * multi;  
     }
     return total;
+  }
+
+  getUser(){
+    this.usuariocomprando = this.authservice.getUser();
+    if(this.usuariocomprando == null){
+      return "Anonimo";
+    }else{
+    return this.usuariocomprando.dataUser.name;
+  }
   }
 
   

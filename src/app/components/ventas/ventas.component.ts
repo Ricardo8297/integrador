@@ -8,6 +8,7 @@ import { VentasService } from 'src/app/services/ventas.service';
 })
 export class VentasComponent implements OnInit {
   reportes: any = [];
+  reporte2: any = [];
   formatsDateTest: string[] = [
     'dd/MM/yyyy',
     'dd/MM/yyyy hh:mm:ss',
@@ -34,6 +35,11 @@ export class VentasComponent implements OnInit {
     'fullTime',
   ];
 
+  fecha: any = {
+    fecha1: "",
+    fecha2: ""
+}
+
   dateNow: Date = new Date();
   dateNowISO = this.dateNow.toISOString();
   dateNowMilliseconds = this.dateNow.getTime();
@@ -48,6 +54,16 @@ export class VentasComponent implements OnInit {
     this.ventasServices.getVentas().subscribe(
       res => {
         this.reportes = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  getReportesfechados(){
+    this.ventasServices.getporFechas(this.fecha).subscribe(
+      res => {
+        this.reportes = res;
+        console.log(res)
       },
       err => console.error(err)
     );

@@ -27,32 +27,38 @@
                 Reporte
             </p>
             <div class="form-group">
-                <input type="text" class="form-control border" style="margin-top: 1rem;" name="filterreport" placeholder="Fecha separada por -" [(ngModel)]="filterreport">
+                <input type="date" class="form-control border" style="margin-top: 1rem;" [(ngModel)]="fecha.fecha1">
             </div>
+            <div class="form-group">
+                <input type="date" class="form-control border" style="margin-top: 1rem;" [(ngModel)]="fecha.fecha2">
+            </div>
+            <div class="text-center"><button class="btn btn-info" (click)="getReportesfechados()">Buscar</button></div>
+
         </div>
     </div>
     <table class="table table-success table-striped" style="margin-top: 5rem;">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Folio</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Proovedor</th>
+                <th scope="col">Total de la compra</th>
+                <th scope="col">Productos</th>
+                <th scope="col">Comprador</th>
                 <th scope="col">cantidad</th>
                 <th scope="col">fecha</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let reporte of reportes | ventas:filterreport">
+            <tr *ngFor="let reporte of reportes">
                 <th scope="row">{{reporte.id}}</th>
-                <td>{{reporte.folio}}</td>
+                <td>${{reporte.total}}</td>
                 <td>{{reporte.producto}}</td>
-                <td>{{reporte.proovedor}}</td>
+                <td>{{reporte.comprador}}</td>
                 <td>{{reporte.cantidad}}</td>
                 <td>{{reporte.fecha | date: 'yyyy-MM-dd'}}</td>
                 <!--| date: 'yyyy-MM-dd'-->
             </tr>
         </tbody>
     </table>
+    <div class="text-center"><button class="btn btn-info" (click)="getReportesfechados()">Generar Reporte</button></div>
 
 </div>

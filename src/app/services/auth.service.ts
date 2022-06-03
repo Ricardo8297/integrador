@@ -52,6 +52,7 @@ export class AuthService {
     const userString = localStorage.getItem('currentUser');
     if (!isNullOrUndefined(userString)) {
       const user: JwtResponseI = JSON.parse(userString);
+      //console.log("usuario de service",user)
       return user;
     } else {
       return null;
@@ -88,7 +89,7 @@ export class AuthService {
     return this.token;
   }
   validateToken(token: ValideI): Observable<ValideI> {
-    console.log("token",token)
+    //console.log("token",token)
     return this.http.post<ValideI>(`${this.API_UR}auth/validate_token`, token);
   }
   /**validateToken(token: ValideI,tipo: ValideI): Observable<ValideI> {

@@ -64,8 +64,10 @@ export class NavigationComponent implements OnInit {
 
   logout(): void {
     localStorage.removeItem('cart');
-    this.router.navigate(['/iniciosesion']);
-
+  this.router.navigate([this.reloadCurrentRoute]);
+    window.location.reload();
+   
+    this.obtener_localstorage();
     this.authService.logout();
 
   }
