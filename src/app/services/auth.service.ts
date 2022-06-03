@@ -7,6 +7,7 @@ import { ValideI } from '../models/valide';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { isNullOrUndefined } from 'is-what';
+import { registroI } from '../models/registro';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,9 @@ export class AuthService {
   authSubject = new BehaviorSubject(false);
   private token!: string;
   constructor(private http: HttpClient) { }
-  /*
-    register(user: UserI): Observable<JwtResponseI> {
-      return this.http.post<JwtResponseI>(`${this.API_UR}/register`,
+  
+  register(user: registroI): Observable<JwtResponseI> {
+      return this.http.post<JwtResponseI>(`${this.API_UR}auth/register`,
         user).pipe(tap(
           (res: JwtResponseI) => {
             if (res) {
@@ -27,10 +28,9 @@ export class AuthService {
             }
           })
         );
-    }*/
+    }
 
   login(user: UserI): Observable<JwtResponseI> {
-    
     return this.http.post<JwtResponseI>(`${this.API_UR}auth/login`,
       user).pipe(tap(
         (res: JwtResponseI) => {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +39,7 @@ import { VistaGarantiasComponent } from './components/vista-garantias/vista-gara
 import { VistaGarantiasClientesComponent } from './components/vista-garantias-clientes/vista-garantias-clientes.component';
 import { FormadepagoComponent } from './components/formadepago/formadepago.component';
 import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/formadepago-tarjeta.component';
+import { GraciasComponent } from './components/gracias/gracias.component';
 
 
 
@@ -74,6 +75,7 @@ import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/fo
     VistaGarantiasClientesComponent,
     FormadepagoComponent,
     FormadepagoTarjetaComponent,
+    GraciasComponent,
 
   ],
   imports: [
@@ -81,7 +83,7 @@ import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/fo
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    
+    ReactiveFormsModule
   ],
   providers: [
     GamesService,

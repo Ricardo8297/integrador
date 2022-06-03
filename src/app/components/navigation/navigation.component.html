@@ -39,8 +39,10 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" routerLink="/reabastecimiento">Lista de reabastecimiento</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" routerLink="/games/add">Agregar Juegos</a>
+                        <!--
+                            <a class="dropdown-item" routerLink="/games/add">Agregar Juegos</a>
                         <a class="dropdown-item" routerLink="/games">Juegos</a>
+                        -->
                     </div>
                 </li>
 
@@ -71,7 +73,7 @@
         <div class="nav-item ">
             <ng-container *ngIf="!onCheckUser(); then thenBlock else elseBlock"></ng-container>
             <ng-template #thenBlock><a mat-button [routerLink]="['/iniciosesion']" class="nav-link text-white"><i class="fa-solid fa-arrow-right-to-bracket"></i><br>Loggin</a></ng-template>
-            <ng-template #elseBlock><a mat-button [routerLink]="['/']" class="nav-link text-white" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i><br>Salir</a></ng-template>
+            <ng-template #elseBlock><a mat-button href="#" class="nav-link text-white" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i><br>Salir</a></ng-template>
         </div>
     </div>
 </nav>

@@ -18,7 +18,8 @@ export class ProductoFormComponent implements OnInit {
     descripcion: '',
     categoria: '',
     imagen: '',
-    existencia: 0
+    existencia: 0,
+    proovedor: ''
   };
 
   edit: Boolean = false;

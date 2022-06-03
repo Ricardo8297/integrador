@@ -7,4 +7,5 @@ export interface Producto{
     categoria?: string;
     imagen?: string;
     existencia?: number;
+    proovedor?: string;
 }

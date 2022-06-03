@@ -13,10 +13,12 @@
                     <br>
                     <p>{{item.product.nombre}}</p>
                     <div *ngIf="item.product.existencia > 0">
-                        <p style="color: greenyellow;">Disponible</p>
+                        <p style="color: green;">Disponibles</p>
+                        <p style="color: violet;">{{item.product.existencia}}</p>
                         <br>
                         <p>Pedidos {{item.quantity}}</p>
-                        <input type="number" class="form-control" placeholder="Cantidad">
+                        <button class="btn btn-info btn-sm" (click)="getProductos(item.product.id)">Agregar 1</button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarUno(item.product.id)">Eliminar 1</button>
                     </div>
                 </div>
 
@@ -36,7 +38,9 @@
             <div class="text-center">
                 <h5>Total a pagar</h5>
                 <h4>${{totalCompra()}}</h4><br>
-                <button class="btn btn-success btn-sm" routerLink="/formadepago">Proceder a pagar</button>
+                <button class="btn btn-success btn-sm" routerLink="/formadepago">Proceder a pagar</button> <br>
+                <br><br>
+                <button class="btn btn-info btn-sm" routerLink="/vistaproductos">Seguir comprando</button>
             </div>
         </div>
     </div>

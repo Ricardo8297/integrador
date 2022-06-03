@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService } from 'src/app/services/productos.ts.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -20,7 +21,8 @@ export class CompraComponent implements OnInit {
     descripcion: '',
     categoria: '',
     imagen: '',
-    existencia: 0
+    existencia: 0,
+    proovedor: ''
   };
  items : any = [];
   edit: Boolean = false;
@@ -67,6 +69,16 @@ export class CompraComponent implements OnInit {
         if(this.items.product.id == local_storage[i].product.id)
         {
           local_storage[i].quantity += 1;
+          if(local_storage[i].quantity > this.items.product.existencia){
+            Swal.fire(
+              {
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'Parece que no nos quedan mas',
+              }
+            )
+            local_storage[i].quantity -= 1;
+          }
           console.log("Quantity for "+i+" : "+ local_storage[i].quantity);
           console.log('same product! index is ', i); 
           this.items=null;

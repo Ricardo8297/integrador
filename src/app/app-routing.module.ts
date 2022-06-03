@@ -9,6 +9,7 @@ import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GarantiaAdminComponent } from './components/garantia-admin/garantia-admin.component';
 import { GarantiaClientesComponent } from './components/garantia-clientes/garantia-clientes.component';
+import { GraciasComponent } from './components/gracias/gracias.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PrincipalComponent } from './components/principal/principal.component';
@@ -122,6 +123,9 @@ const routes: Routes = [
   },{
     path: 'tarjeta',
     component: FormadepagoTarjetaComponent
+  },{
+    path: 'gracias',
+    component: GraciasComponent
   }
 ];
 

@@ -33,6 +33,10 @@
                         <input type="number" name="existencia" [(ngModel)]="producto.existencia" placeholder="Existencia" class="form-control" autofocus>
                     </div>
                     <br>
+                    <div class="form-group">
+                        <input type="text" name="proovedor" [(ngModel)]="producto.proovedor" placeholder="Proovedor" class="form-control" autofocus>
+                    </div>
+                    <br>
                     <!--Usa la variable edit para saber si es true usa update producto si no usa saveproducto-->
                     <button class="btn btn-success btn-block text-center" (click)="edit ? updateProductos() : saveNewProducto()">
                         Guardar
