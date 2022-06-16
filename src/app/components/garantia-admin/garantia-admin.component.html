@@ -3,18 +3,19 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <input type="text" name="codigoProducto" [(ngModel)]="garantia.codigoProducto" placeholder="codigoProducto" class="form-control img-fluid" autofocus>
-                    </div>
+                <form ngNativeValidate (submit)="saveNewGarantia()">
+                    <select name="select" name="codigoProducto" class="form-control img-fluid" [(ngModel)]="garantia.codigoProducto">
+                        <option *ngFor="let producto of productos" value={{producto.codigo}} >{{producto.codigo}}</option>
+                        
+                      </select>
                     <br>
                     <div class="form-group">
-                        <textarea name="motivo" rows="2" [(ngModel)]="garantia.motivo" placeholder="motivo" class="form-control"></textarea>
+                        <textarea name="motivo" rows="2" [(ngModel)]="garantia.motivo" placeholder="motivo" class="form-control" required=""></textarea>
                     </div>
                     <br>
                     <!--Usa la variable edit para saber si es true usa update game si no usa savegame-->
                     <div class="text-center">
-                        <button class="btn btn-success btn-block text-center" (click)="saveNewGarantia()">
+                        <button class="btn btn-success btn-block text-center">
                         Guardar
                     </button>
                     </div>
