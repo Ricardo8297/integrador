@@ -35,7 +35,6 @@ export class VentasService {
     return this.http.delete(`${this.API_URI}/ventas/${id}`, { headers });
   }
 
-  //Necesito un juego de tipo juego
   saveVenta(venta: Ventas) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
@@ -47,9 +46,11 @@ export class VentasService {
       .set('Authorization', 'Bearer ' + this.authService.getToken());
     return this.http.put(`${this.API_URI}/ventas/${id}`, updateVenta, { headers });
   }
+
   getporFechas(fecha : fechas){
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
     return this.http.post(`${this.API_URI}/ventas/buscar/uno`,fecha,{ headers });
   }
+  
 }

@@ -33,7 +33,7 @@ getReportesCompras(){
  }
 
  //Necesito un juego de tipo juego
- saveReporteCompras(updateReabastecimiento: Reabastecimiento){
+ saveReporteReabastecimiento(updateReabastecimiento: Reabastecimiento){
   const headers = new HttpHeaders()
   .set('Authorization', 'Bearer ' + this.authService.getToken());
   return this.http.post(`${this.API_URI}/reabastecimiento`,updateReabastecimiento, { headers });

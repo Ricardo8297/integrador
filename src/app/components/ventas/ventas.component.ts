@@ -70,5 +70,7 @@ export class VentasComponent implements OnInit {
     );
   }
 
-  
+  generarReporte(){
+    window.print();
+  }
 }

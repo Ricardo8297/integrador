@@ -38,4 +38,8 @@ export class ReporteComprasComponent implements OnInit {
       err => console.error(err)
     );
   }
+
+  generarReporte(){
+    window.print();
+  }
 }
