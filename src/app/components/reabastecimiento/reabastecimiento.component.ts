@@ -25,4 +25,7 @@ export class ReabastecimientoComponent implements OnInit {
     );
   }
 
+  generarReporte(){
+    window.print();
+  }
 }
