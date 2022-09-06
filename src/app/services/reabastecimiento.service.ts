@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 export class ReabastecimientoService {
 
 //Api
-API_URI = 'http://localhost:3000/api'
+API_URI = 'http://10.0.1.49:3000/api'
 
 constructor(private http: HttpClient, private authService: AuthService) { }
  

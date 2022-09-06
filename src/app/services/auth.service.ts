@@ -13,7 +13,7 @@ import { registroI } from '../models/registro';
   providedIn: 'root'
 })
 export class AuthService {
-  API_UR = 'http://localhost:3000/';
+  API_UR = 'http://10.0.1.49:3000/';
   authSubject = new BehaviorSubject(false);
   private token!: string;
   constructor(private http: HttpClient) { }

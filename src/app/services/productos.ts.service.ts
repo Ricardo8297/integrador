@@ -10,7 +10,7 @@ import { Producto } from '../models/Producto';
 export class ProductosService {
 
   //Api
-  API_URI = 'http://localhost:3000/api'
+  API_URI = 'http://10.0.1.49:3000/api'
 
   constructor(private http: HttpClient) { }
    
