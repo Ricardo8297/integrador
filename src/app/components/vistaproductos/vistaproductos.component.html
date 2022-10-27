@@ -10,33 +10,51 @@
         </div>
     </div>
     <div class="row">
+        <div *ngIf="(productos | filter:filterproduct) === 'No hay nada'; else elseBlock">
+            <div class="text-center fw-bold" style="font-size: 500%">
 
-        <div class="col-md-4" *ngFor="let producto of productos | filter:filterproduct" style="margin-top: 2rem;">
-
-            <div class="card text-center">
-                <div class="card-header bg-dark text-white d-flex justify-content-between aling-items-center">
-                    <p class="fs-4">{{producto.nombre}}</p>
-
-
+                <div class="container row g-0 text-center">
+                    <div class="col-8">
+                        <p>
+                            Producto no encontrado :(
+                        </p>
+                    </div>
+                    <div class="col-2" style="margin-top: 3rem;">
+                        <img src="./assets/principal/perritotriste.jpg" width="250" alt="...">
+                    </div>
                 </div>
-
-                <div class="card-body" style="color: black;">
-                    <img [src]="producto.imagen" class="card-img-top">
-                    <p>Codigo: {{producto.codigo}}</p>
-                    <p style="color: green;">Precio ${{producto.precio}}.MXN</p>
-
-                    <!--<p>{{producto.descripcion}}</p>-->
-
-                    <p style="color: teal;">{{producto.categoria}}</p>
-
-
-                    <p>Existencia:</p>
-                    <p style="color: cadetblue;"> {{producto.existencia}}</p>
-
-                </div>
-
             </div>
-            <div class="text-center bg-light"><a class="btn btn-success" [routerLink]="['/productos/compra',producto.id]">Comprar</a></div>
+
         </div>
+        <ng-template #elseBlock>
+            <div class="col-md-4" *ngFor="let producto of productos | filter:filterproduct" style="margin-top: 2rem;">
+                <p *ngIf="(productos | filter:filterproduct)?.length <= 0">No record found!</p>
+                <div class="card text-center">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between aling-items-center">
+                        <p class="fs-4">{{producto.nombre}}</p>
+
+
+                    </div>
+
+                    <div class="card-body" style="color: black;">
+                        <img [src]="producto.imagen" class="card-img-top">
+                        <p>Codigo: {{producto.codigo}}</p>
+                        <p style="color: green;">Precio ${{producto.precio}}.MXN</p>
+
+                        <!--<p>{{producto.descripcion}}</p>-->
+
+                        <p style="color: teal;">{{producto.categoria}}</p>
+
+
+                        <p>Existencia:</p>
+                        <p style="color: cadetblue;"> {{producto.existencia}}</p>
+
+                    </div>
+
+                </div>
+                <div class="text-center bg-light"><a class="btn btn-success" [routerLink]="['/productos/compra',producto.id]">Comprar</a></div>
+            </div>
+        </ng-template>
+
     </div>
 </div>

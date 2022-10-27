@@ -42,6 +42,9 @@ import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/fo
 import { GraciasComponent } from './components/gracias/gracias.component';
 import { InventarioComponent } from './components/inventario/inventario.component';
 import { FiterInventarioPipe } from './pipes/inventario.pipe';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { FormadepagoPaypalComponent } from './components/formadepago-paypal/formadepago-paypal.component';
+import { GarantiaokComponent } from './components/garantiaok/garantiaok.component';
 
 
 
@@ -80,7 +83,9 @@ import { FiterInventarioPipe } from './pipes/inventario.pipe';
     FormadepagoTarjetaComponent,
     GraciasComponent,
     InventarioComponent,
-    FiterInventarioPipe
+    FiterInventarioPipe,
+    FormadepagoPaypalComponent,
+    GarantiaokComponent
 
   ],
   imports: [
@@ -97,7 +102,8 @@ import { FiterInventarioPipe } from './pipes/inventario.pipe';
     ReabastecimientoService,
     VentasService,
     GarantiaAdminService,
-    GarantiaService
+    GarantiaService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent] 
 })

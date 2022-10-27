@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VentasService } from 'src/app/services/ventas.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -64,6 +65,15 @@ export class VentasComponent implements OnInit {
     this.ventasServices.getporFechas(this.fecha).subscribe(
       res => {
         this.reportes = res;
+        if(this.reportes==""){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecciona un rango de fechas valido!',
+            
+          })
+          //footer: '<a href="">Why do I have this issue?</a>'
+        }
         console.log(res)
       },
       err => console.error(err)

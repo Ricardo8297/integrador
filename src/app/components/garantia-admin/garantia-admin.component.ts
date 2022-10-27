@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
 import { GarantiaAdminService } from 'src/app/services/garantia-admin.service';
 import { ProductosService } from 'src/app/services/productos.ts.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-garantia-admin',
@@ -37,7 +38,14 @@ export class GarantiaAdminComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['/garantiaadmin/vista']);
+        //this.router.navigate(['/garantiaadmin/vista']);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Solicitud en proceso',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },
       err => console.log(err)
     )

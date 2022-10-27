@@ -4,7 +4,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ProductosService } from 'src/app/services/productos.ts.service';
 import { ReabastecimientoService } from 'src/app/services/reabastecimiento.service';
 import { VentasService } from 'src/app/services/ventas.service';
-
+import Swal from 'sweetalert2';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-formadepago-tarjeta',
   templateUrl: './formadepago-tarjeta.component.html',
@@ -23,7 +24,17 @@ export class FormadepagoTarjetaComponent implements OnInit {
     existencia: 0,
     proovedor: ''
   };
-
+  productodos: any = {
+    id: 0,
+    nombre: '',
+    codigo: '',
+    precio: 0,
+    descripcion: '',
+    categoria: '',
+    imagen: '',
+    existencia: 0,
+    proovedor: ''
+  };
   usuariocomprando: any = [];
   venta: any = {
     id: 0,
@@ -40,11 +51,21 @@ export class FormadepagoTarjetaComponent implements OnInit {
     producto: '',
     proovedor: '',
     cantidad: 0,
+    fecha: new Date()
   }
 
   constructor(private reabastecimientoService: ReabastecimientoService, private authservice: AuthService, private productosservice: ProductosService, private ventasService: VentasService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    let shopping_cart = [];
+    shopping_cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    for (let i in shopping_cart) {
+      this.productosservice.getProducto(shopping_cart[i].product.id).pipe(take(1)).toPromise()
+         .then((res => {;
+         this.productodos = res;
+         console.log(this.productodos)
+         }));
+    }
   }
 
 
@@ -82,16 +103,13 @@ export class FormadepagoTarjetaComponent implements OnInit {
     this.venta.cantidad = cantidadlocal;
 
     //console.log(this.venta)
-
-    //TODO: Guarda la venta
-    this.ventasService.saveVenta(this.venta)
-      .subscribe(
-        res => {
-          console.log(res)
-        },
-        err => console.log(err)
-      )
-
+    //Swal.fire({
+     // icon: 'error',
+      //title: 'Oops...',
+      //text: 'Algo ha salido mal con las compras :('
+      
+    //})
+    
     //*Metodo para guardar la nueva existencia
 
     //? Elimina el id porque se genera automaticamente el la DB
@@ -103,7 +121,22 @@ export class FormadepagoTarjetaComponent implements OnInit {
     //*Variables para guardar la cantidad final, restando la cantidad a comprar a la existencia
     let aux = 0;
     let aux2 = 0;
-
+    let noerror = true;
+    console.log("antes for")
+    for(let x in this.productodos){
+      console.log(this.productodos.existencia)
+    if(this.productodos.existencia<=0){
+      noerror = false;
+      console.log("antes del cambio")
+      console.log(this.productodos.existencia)
+      console.log(noerror)  
+      break;    
+    }
+    }
+    console.log("despues for")
+    console.log("despues del cambio")
+    console.log(noerror)
+    if(noerror == true){
     for (let i in shopping_cart) {
 
       //*Guardamos los datos del localstorage en el arreglo "producto"
@@ -125,6 +158,7 @@ export class FormadepagoTarjetaComponent implements OnInit {
       //*Si agotamos la existencia agregamos un reporte de reabastecimiento
 
       if (this.producto.existencia <= 0) {
+        delete this.reabastecimiento.fecha;
         this.reabastecimiento.folio = 0;
         this.reabastecimiento.producto = shopping_cart[i].product.nombre;
         this.reabastecimiento.proovedor = shopping_cart[i].product.proovedor;
@@ -132,7 +166,7 @@ export class FormadepagoTarjetaComponent implements OnInit {
         * ! El reabastecimiento es estatico
         * ! Se debe corregir tomandolo de la DB
         */
-        this.reabastecimiento.cantidad = 20;
+        this.reabastecimiento.cantidad = Math.random() * (50 - 20) + 20;;
 
         //TODO: Guarda el reporte de reabastecimiento
         this.reabastecimientoService.saveReporteReabastecimiento(this.reabastecimiento)
@@ -157,15 +191,35 @@ export class FormadepagoTarjetaComponent implements OnInit {
           err => console.log(err)
         )
     }
-
+  
+    //TODO: Guarda la venta
+    this.ventasService.saveVenta(this.venta)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
     //? Elimina el carrito
     localStorage.removeItem('cart');
     //this.router.navigate([this.router.url])
     this.router.navigate(['/gracias']);
+    }else{
+       Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Algo ha salido mal con las compras :('
+      })
+      //? Elimina el carrito
+    localStorage.removeItem('cart');
+    //this.router.navigate([this.router.url])
+    this.router.navigate(['/vistaproductos']);
+    }
+    
 
 
   }
-
+  
   totalCompra() {
     let shopping_cart = [];
     let suma = 0;

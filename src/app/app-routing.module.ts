@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdministrarUsuariosComponent } from './components/administrar-usuarios/administrar-usuarios.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CompraComponent } from './components/compra/compra.component';
+import { FormadepagoPaypalComponent } from './components/formadepago-paypal/formadepago-paypal.component';
 import { FormadepagoTarjetaComponent } from './components/formadepago-tarjeta/formadepago-tarjeta.component';
 import { FormadepagoComponent } from './components/formadepago/formadepago.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GarantiaAdminComponent } from './components/garantia-admin/garantia-admin.component';
 import { GarantiaClientesComponent } from './components/garantia-clientes/garantia-clientes.component';
+import { GarantiaokComponent } from './components/garantiaok/garantiaok.component';
 import { GraciasComponent } from './components/gracias/gracias.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
 import { InventarioComponent } from './components/inventario/inventario.component';
@@ -125,11 +127,17 @@ const routes: Routes = [
     path: 'tarjeta',
     component: FormadepagoTarjetaComponent
   },{
+    path: 'paypal',
+    component: FormadepagoPaypalComponent
+  },{
     path: 'gracias',
     component: GraciasComponent
   },{
     path: 'inventario',
     component: InventarioComponent
+  },{
+    path: 'garantiaok',
+    component: GarantiaokComponent
   }
 ];
 

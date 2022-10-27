@@ -2,7 +2,8 @@
     <div class="col-md-4 offset-md-2">
         <div class="card">
             <div class="card-body">
-                <form ngNativeValidate (submit)="edit ? updateProductos() : saveNewProducto()">
+                <form action="#" method="post" (submit)="edit ? updateProductos() : saveNewProducto()" ngNativeValidate>
+                    <!--<div class="alert alert-danger" role="alert" *ngIf="isError">{{error}}</div>-->
                     <div class="form-group">
                         <input type="text" name="nombre" [(ngModel)]="producto.nombre" placeholder="Nombre" class="form-control img-fluid" autofocus required maxlength="40">
                     </div>

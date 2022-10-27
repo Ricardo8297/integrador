@@ -3,13 +3,17 @@
     <div class="row">
 
         <div class="col">
-            <p class="fs-4">
-                Reporte
+            <p class="fs-4 text-center">
+                Reporte Ventas
             </p>
             <div class="form-group">
-                <input type="text" class="form-control border" style="margin-top: 1rem;" name="filterreport" placeholder="Proovedor" [(ngModel)]="filterreport">
-
+                <input type="date" class="form-control border" style="margin-top: 1rem;" [(ngModel)]="fecha.fecha1">
             </div>
+            <div class="form-group">
+                <input type="date" class="form-control border" style="margin-top: 1rem;" [(ngModel)]="fecha.fecha2">
+            </div>
+            <div class="text-center"><button class="btn btn-info" (click)="getReportesfechados()">Buscar</button></div>
+
         </div>
     </div>
     <table class="table table-success table-striped" style="margin-top: 5rem;">
@@ -20,6 +24,7 @@
                 <th scope="col">Producto</th>
                 <th scope="col">Proovedor</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Fecha</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +34,7 @@
                 <td>{{reporte.producto}}</td>
                 <td>{{reporte.proovedor}}</td>
                 <td>{{reporte.cantidad}}</td>
+                <td>{{reporte.fecha | date: 'yyyy-MM-dd'}}</td>
             </tr>
         </tbody>
     </table>

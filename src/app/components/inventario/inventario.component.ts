@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.ts.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inventario',
@@ -7,6 +8,12 @@ import { ProductosService } from 'src/app/services/productos.ts.service';
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit {
+  reportes: any = [];
+  reporte2: any = [];
+  fecha: any = {
+    fecha1: "",
+    fecha2: ""
+  }
   productos: any = [];
   filterreports='';
   constructor(private productosService: ProductosService) { 
@@ -24,6 +31,26 @@ export class InventarioComponent implements OnInit {
       err => console.error(err)
     );
   }
+
+  getReportesfechados(){
+    this.productosService.getporFechas(this.fecha).subscribe(
+      res => {
+        this.productos = res;
+        if(this.productos==""){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecciona un rango de fechas valido!',
+            
+          })
+          //footer: '<a href="">Why do I have this issue?</a>'
+        }
+        console.log(res)
+      },
+      err => console.error(err)
+    );
+  }
+
   generarReporte(){
     window.print();
   }

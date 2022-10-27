@@ -3,4 +3,5 @@ export interface Reabastecimiento{
     folio?: number;
     producto?: string;
     proovedor?: number;
+    fecha?: Date;
 }

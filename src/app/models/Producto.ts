@@ -8,4 +8,5 @@ export interface Producto{
     imagen?: string;
     existencia?: number;
     proovedor?: string;
+    fecha?: Date;
 }

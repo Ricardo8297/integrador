@@ -41,7 +41,7 @@ export class GarantiaClientesComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['/garantiaClientes/vista']);
+        this.router.navigate(['/garantiaok']);
       },
       err => console.log(err)
     )
