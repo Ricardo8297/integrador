@@ -13,44 +13,44 @@ export class VentasService {
 
   //Api
   //API_URI = 'http://10.0.1.49:3000/api'
-  API_URI = 'http://localhost:3000/api';
+  API_URI = 'http://10.0.1.49:3000/';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
 
   getVentas() {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.get(`/api/ventas`, { headers });
+    return this.http.get(`${this.API_URI}/ventas`, { headers });
   }
 
   getVenta(id: string) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.get(`/api/ventas/${id}`, { headers });
+    return this.http.get(`${this.API_URI}/ventas/${id}`, { headers });
   }
 
   deleteVenta(id: string) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.delete(`/api/ventas/${id}`, { headers });
+    return this.http.delete(`${this.API_URI}/ventas/${id}`, { headers });
   }
 
   saveVenta(venta: Ventas) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.post(`/api/ventas`, venta, { headers });
+    return this.http.post(`${this.API_URI}/ventas`, venta, { headers });
   }
 
   updateVenta(id: string | number, updateVenta: Ventas) {
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.put(`/api/ventas/${id}`, updateVenta, { headers });
+    return this.http.put(`${this.API_URI}/ventas/${id}`, updateVenta, { headers });
   }
 
   getporFechas(fecha : fechas){
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.post(`/api/ventas/buscar/uno`,fecha,{ headers });
+    return this.http.post(`${this.API_URI}/ventas/buscar/uno`,fecha,{ headers });
   }
 
 }

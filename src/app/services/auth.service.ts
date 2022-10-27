@@ -14,8 +14,8 @@ import { registroI } from '../models/registro';
 })
 export class AuthService {
 
-  //*?API_UR = 'http://10.0.1.49:3000/';
-  API_UR = 'http://localhost:3000/';
+  API_UR = 'http://10.0.1.49:3000/';
+  //API_UR = 'http://localhost:3000/';
 
 
   authSubject = new BehaviorSubject(false);
@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: registroI): Observable<JwtResponseI> {
-          return this.http.post<JwtResponseI>(`/auth/register`,
+          return this.http.post<JwtResponseI>(`${this.API_UR}auth/register`,
         user).pipe(tap(
           (res: JwtResponseI) => {
             if (res) {
@@ -35,7 +35,7 @@ export class AuthService {
     }
 
   login(user: UserI): Observable<JwtResponseI> {
-          return this.http.post<JwtResponseI>(`/auth/login`,
+          return this.http.post<JwtResponseI>(`${this.API_UR}auth/login`,
       user).pipe(tap(
         (res: JwtResponseI) => {
           if (res) {
@@ -94,7 +94,7 @@ export class AuthService {
   }
   validateToken(token: ValideI): Observable<ValideI> {
     //console.log("token",token)
-    return this.http.post<ValideI>(`/auth/validate_token`, token);
+    return this.http.post<ValideI>(`${this.API_UR}auth/validate_token`, token);
   }
   /**validateToken(token: ValideI,tipo: ValideI): Observable<ValideI> {
           return this.http.post<ValideI>(`/auth/validate_token`, token,tipo);
@@ -102,11 +102,11 @@ export class AuthService {
 
 
   getUsuarios(){
-  return this.http.get(`/auth`);
+  return this.http.get(`${this.API_UR}auth`);
    }
 
    deleteUsuario(id: string){
-   return this.http.delete(`/auth/${id}`);
+   return this.http.delete(`${this.API_UR}auth/${id}`);
    }
 }
 
