@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
+
 export class InventarioComponent implements OnInit {
   reportes: any = [];
   reporte2: any = [];
@@ -19,6 +20,7 @@ export class InventarioComponent implements OnInit {
   constructor(private productosService: ProductosService) { 
 
   }
+  
 
   ngOnInit(): void {
     this.getProductos();
@@ -33,22 +35,32 @@ export class InventarioComponent implements OnInit {
   }
 
   getReportesfechados(){
-    this.productosService.getporFechas(this.fecha).subscribe(
-      res => {
-        this.productos = res;
-        if(this.productos==""){
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Selecciona un rango de fechas valido!',
-            
-          })
-          //footer: '<a href="">Why do I have this issue?</a>'
-        }
-        console.log(res)
-      },
-      err => console.error(err)
-    );
+    if(this.fecha.fecha1 == "" || this.fecha.fecha2 == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecciona un rango de fechas valido!',
+        
+      })
+    }else{
+      this.productosService.getporFechas(this.fecha).subscribe(
+        res => {
+          this.productos = res;
+          console.log(this.productos.fecha)
+          if(this.productos==""){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Selecciona un rango de fechas valido!',
+              
+            })
+            //footer: '<a href="">Why do I have this issue?</a>'
+          }
+          console.log(res)
+        },
+        err => console.error(err)
+      );
+    }
   }
 
   generarReporte(){

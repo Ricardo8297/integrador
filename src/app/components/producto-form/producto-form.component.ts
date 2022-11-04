@@ -77,7 +77,7 @@ export class ProductoFormComponent implements OnInit {
 
 
   updateProductos(){
-    
+    delete this.producto.fecha;
     this.productosService.updateProductos(this.producto.id, this.producto)
     .subscribe(
       res => {

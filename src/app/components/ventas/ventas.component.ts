@@ -62,6 +62,14 @@ export class VentasComponent implements OnInit {
   }
 
   getReportesfechados(){
+    if(this.fecha.fecha1 == "" || this.fecha.fecha2 == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecciona un rango de fechas valido!',
+        
+      })
+    }else{
     this.ventasServices.getporFechas(this.fecha).subscribe(
       res => {
         this.reportes = res;
@@ -78,6 +86,7 @@ export class VentasComponent implements OnInit {
       },
       err => console.error(err)
     );
+    }
   }
 
   generarReporte(){

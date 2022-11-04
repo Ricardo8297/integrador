@@ -8,31 +8,38 @@
 
 <div class="container" style="margin-top: 3rem; margin-bottom: 2rem;">
     <div class="row" style="text-align: center;">
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem; background-color: #acffff;">
+        <div class="col-md-2">
+            <div class="card" style="width: 13rem; background-color: #ccf390;">
                 <div class="card-body">
-                    <p class="card-text">0 <br><i class="fa-solid fa-users"></i> Usuarios.</p>
+                    <p class="card-text">{{usuarioscount}} <br><i class="fa-solid fa-users"></i> Usuarios.</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem; background-color: #f1ffa1;">
+        <div class="col-md-2">
+            <div class="card" style="margin-left: 2rem; width: 13rem; background-color: #e0e05a;">
                 <div class="card-body">
-                    <p class="card-text">0 <br><i class="fa-solid fa-hammer"></i> Administradores.</p>
+                    <p class="card-text">{{admincount}} <br><i class="fa-solid fa-hammer"></i> Administradores.</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem; background-color: #ffcf41;">
+        <div class="col-md-2">
+            <div class="card" style="margin-left: 5rem; width: 13rem; background-color: #f7c41f;">
                 <div class="card-body">
-                    <p class="card-text">0 <br><i class="fa-solid fa-truck-field"></i> Proovedores.</p>
+                    <p class="card-text">{{proovedorcount}} <br><i class="fa-solid fa-truck-field"></i> Proovedores.</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem; background-color: #ff5f53;">
+        <div class="col-md-2">
+            <div class="card" style="margin-left: 9rem; width: 13rem; background-color: #f2445e;">
                 <div class="card-body">
-                    <p class="card-text">0 <br><i class="fa-solid fa-clipboard-check"></i> Total.</p>
+                    <p class="card-text">{{baneadoscount}} <br><i class="fa-solid fa-ban"></i> Baneados.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="margin-left: 13rem; width: 13rem; background-color: #fc930a;">
+                <div class="card-body">
+                    <p class="card-text">{{totalcount}} <br><i class="fa-solid fa-clipboard-check"></i> Total.</p>
                 </div>
             </div>
         </div>
@@ -45,6 +52,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido Paterno</th>
                 <th scope="col">Rol</th>
+                <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -63,6 +71,16 @@
                 <div *ngIf="usuario.tipo_usuario == 3">
                     <td>Usuario</td>
                 </div>
+                <div *ngIf="usuario.tipo_usuario == 4">
+                    <td>Suspendido</td>
+                </div>
+                <div *ngIf="usuario.tipo_usuario !=4 ; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <td><button type="button" class="btn-warning" (click)="banear(usuario.id)">Suspender</button></td>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <td><button type="button" class="btn-success" (click)="banear(usuario.id)">Restaurar</button></td>
+                </ng-template>
                 <td><button type="button" class="btn-danger" (click)="deleteUsuarios(usuario.id)">Eliminar</button></td>
             </tr>
         </tbody>

@@ -12,11 +12,11 @@ export class FilterPipe implements PipeTransform {
     for(const post of value){
         if(post.nombre.toLowerCase().indexOf(arg.toLowerCase())> -1 || post.codigo.toLowerCase().indexOf(arg.toLowerCase())> -1){
           resultpost.push(post);
-        }
-        if(resultpost.length===0){
+        } 
+    }
+    if(resultpost.length==0){
           
-          return resultposts;
-        }
+      return resultposts;
     }
     return resultpost;
   }

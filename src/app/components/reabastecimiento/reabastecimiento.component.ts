@@ -34,6 +34,14 @@ dateNow: Date = new Date();
   }
 
   getReportesfechados(){
+    if(this.fecha.fecha1 == "" || this.fecha.fecha2 == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecciona un rango de fechas valido!',
+        
+      })
+    }else{
     this.reporteServices.getporFechas(this.fecha).subscribe(
       res => {
         this.reportes = res;
@@ -50,6 +58,7 @@ dateNow: Date = new Date();
       },
       err => console.error(err)
     );
+    }
   }
 
   generarReporte(){

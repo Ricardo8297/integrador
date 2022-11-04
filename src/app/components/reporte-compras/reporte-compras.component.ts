@@ -31,19 +31,30 @@ export class ReporteComprasComponent implements OnInit {
     );
   }
   getReportesfechados(){
+    if(this.fecha.fecha1 == "" || this.fecha.fecha2 == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Selecciona un rango de fechas valido!',
+        
+      })
+    }else{
     this.reporteServices.getporFechas(this.fecha).subscribe(
       res => {
         this.reportes = res;
+        if(this.reportes==""){
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Selecciona un rango de fechas valido!',
           
         })
+      }
         console.log(res)
       },
       err => console.error(err)
     );
+    }
   }
 
   generarReporte(){

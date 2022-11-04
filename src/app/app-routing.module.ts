@@ -61,15 +61,18 @@ const routes: Routes = [
   },
   {
     path: 'productos',
-    component: ProductListComponent
+    component: ProductListComponent,
+    canActivate: [AuthGuard]
   },
   {
    path: 'productos/add',
-   component: ProductoFormComponent
+   component: ProductoFormComponent,
+   canActivate: [AuthGuard]
   },
   {
     path: 'productos/edit/:id',
-    component: ProductoFormComponent
+    component: ProductoFormComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'productos/compra/:id',
@@ -100,7 +103,7 @@ const routes: Routes = [
   {
     path: 'reabastecimiento',
     component: ReabastecimientoComponent,
-    canActivate: [AuthGuard]
+    canActivate: [NoauthGuard]
   },
   {
     path: 'ventas',
@@ -134,7 +137,8 @@ const routes: Routes = [
     component: GraciasComponent
   },{
     path: 'inventario',
-    component: InventarioComponent
+    component: InventarioComponent,
+    canActivate: [AuthGuard]
   },{
     path: 'garantiaok',
     component: GarantiaokComponent
