@@ -10,7 +10,7 @@ export class FilterPipe implements PipeTransform {
     const resultposts = 'No hay nada';
 
     for(const post of value){
-        if(post.nombre.toLowerCase().indexOf(arg.toLowerCase())> -1 || post.codigo.toLowerCase().indexOf(arg.toLowerCase())> -1){
+        if(post.nombre.toLowerCase().indexOf(arg.toLowerCase())> -1 || post.codigo.toLowerCase().indexOf(arg.toLowerCase())> -1 || post.categoria.toLowerCase().indexOf(arg.toLowerCase())> -1 ){
           resultpost.push(post);
         } 
     }

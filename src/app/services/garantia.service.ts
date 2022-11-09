@@ -15,23 +15,23 @@ export class GarantiaService {
 
 
   getGarantias(){
-  return this.http.get(`${this.API_URI}/garantia`);
+  return this.http.get(`/api/garantia`);
    }
 
    getGarantia(id: string){
-   return this.http.get(`${this.API_URI}/garantia/${id}`);
+   return this.http.get(`/api/garantia/${id}`);
    }
 
    deleteGarantia(id: string){
-   return this.http.delete(`${this.API_URI}/garantia/${id}`);
+   return this.http.delete(`/api/garantia/${id}`);
    }
 
    saveGarantia(game: garantia){
-   return this.http.post(`${this.API_URI}/garantia`,game);
+   return this.http.post(`/api/garantia`,game);
    }
 
    updateGarantia(id: string|number,updatedGame: garantia){
-   return this.http.put(`${this.API_URI}/garantia/${id}`, updatedGame);
+   return this.http.put(`/api/garantia/${id}`, updatedGame);
    }
 
 }

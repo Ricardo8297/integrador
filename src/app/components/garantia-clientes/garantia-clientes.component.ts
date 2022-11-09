@@ -17,7 +17,8 @@ export class GarantiaClientesComponent implements OnInit {
     codigoProducto: '',
     imagen: ''
   };
-   
+  public isError = false;
+  public error = '';
   edit: Boolean = false;
   constructor(private garantiaService: GarantiaService, private router: Router,private productosService: ProductosService) { }
   filterreport='';
@@ -36,16 +37,22 @@ export class GarantiaClientesComponent implements OnInit {
   
   saveNewGarantia(){
     delete this.garantia.id;
-    
-    this.garantiaService.saveGarantia(this.garantia)
-    .subscribe(
+    this.garantiaService.saveGarantia(this.garantia).subscribe(
       res => {
-        console.log(res)
         this.router.navigate(['/garantiaok']);
+        this.isError = false;
       },
-      err => console.log(err)
-    )
+      err => {
+        this.onIsError();
+        this.error = (err.error.message);
+      }
+    );
   }
 
-  
+  onIsError(): void {
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
+  }
 }

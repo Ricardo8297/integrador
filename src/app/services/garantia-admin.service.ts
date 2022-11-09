@@ -19,31 +19,31 @@ export class GarantiaAdminService {
   getGarantias(){
     const headers = new HttpHeaders()
   .set('Authorization', 'Bearer ' + this.authService.getToken());
-  return this.http.get(`${this.API_URI}/garantiaadmin`, {headers});
+  return this.http.get(`/api/garantiaadmin`, {headers});
    }
 
    getGarantia(id: string){
     const headers = new HttpHeaders()
     .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.get(`${this.API_URI}/garantiaadmin/${id}`, {headers});
+    return this.http.get(`/api/garantiaadmin/${id}`, {headers});
    }
 
    deleteGarantia(id: string){
     const headers = new HttpHeaders()
     .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.delete(`${this.API_URI}/garantiaadmin/${id}`, {headers});
+    return this.http.delete(`/api/garantiaadmin/${id}`, {headers});
    }
 
    saveGarantia(game: garantiaAdmin){
     const headers = new HttpHeaders()
     .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.post(`${this.API_URI}/garantiaadmin`,game, {headers});
+    return this.http.post(`/api/garantiaadmin`,game, {headers});
    }
 
    updateGarantia(id: string|number,updatedGame: garantiaAdmin){
     const headers = new HttpHeaders()
     .set('Authorization', 'Bearer ' + this.authService.getToken());
-    return this.http.put(`${this.API_URI}/garantiaadmin/${id}`, updatedGame, {headers});
+    return this.http.put(`/api/garantiaadmin/${id}`, updatedGame, {headers});
    }
 
 }

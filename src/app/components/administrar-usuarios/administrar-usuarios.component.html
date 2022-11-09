@@ -79,7 +79,7 @@
                     <td><button type="button" class="btn-warning" (click)="banear(usuario.id)">Suspender</button></td>
                 </ng-template>
                 <ng-template #elseBlock>
-                    <td><button type="button" class="btn-success" (click)="banear(usuario.id)">Restaurar</button></td>
+                    <td><button type="button" class="btn-success" (click)="desbanear(usuario.id)">Restaurar</button></td>
                 </ng-template>
                 <td><button type="button" class="btn-danger" (click)="deleteUsuarios(usuario.id)">Eliminar</button></td>
             </tr>

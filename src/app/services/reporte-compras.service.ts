@@ -20,36 +20,36 @@ export class ReporteComprasService {
    getReportesCompras(){
     const headers = new HttpHeaders()
               .set('Authorization', 'Bearer ' + this.authService.getToken());
-              return this.http.get(`${this.API_URI}/reportecompras`, {headers} );
+              return this.http.get(`/api/reportecompras`, {headers} );
     }
 
     getReporteCompras(id: string){
       const headers = new HttpHeaders()
               .set('Authorization', 'Bearer ' + this.authService.getToken());
-              return this.http.get(`${this.API_URI}/reportecompras/${id}`, {headers});
+              return this.http.get(`/api/reportecompras/${id}`, {headers});
     }
 
     deleteReporteCompras(id: string){
       const headers = new HttpHeaders()
               .set('Authorization', 'Bearer ' + this.authService.getToken());
-              return this.http.delete(`${this.API_URI}/reportecompras/${id}`, {headers});
+              return this.http.delete(`/api/reportecompras/${id}`, {headers});
     }
 
     //Necesito un juego de tipo juego
     saveReporteCompras(reportecompras: ReporteCompras){
       const headers = new HttpHeaders()
               .set('Authorization', 'Bearer ' + this.authService.getToken());
-              return this.http.post(`${this.API_URI}/reportecompras`,reportecompras, {headers});
+              return this.http.post(`/api/reportecompras`,reportecompras, {headers});
     }
 
     updateReporteCompras(id: string|number,updateCompra: ReporteCompras){
       const headers = new HttpHeaders()
               .set('Authorization', 'Bearer ' + this.authService.getToken());
-              return this.http.put(`${this.API_URI}/reportecompras/${id}`, updateCompra, {headers});
+              return this.http.put(`/api/reportecompras/${id}`, updateCompra, {headers});
     }
     getporFechas(fecha : fechas){
       const headers = new HttpHeaders()
         .set('Authorization', 'Bearer ' + this.authService.getToken());
-        return this.http.post(`${this.API_URI}/reportecompras/buscar/uno`,fecha,{ headers });
+        return this.http.post(`/api/reportecompras/buscar/uno`,fecha,{ headers });
     }
 }

@@ -16,11 +16,7 @@ export class AdministrarUsuariosComponent implements OnInit {
   totalcount!: number;
   baneadoscount!: number;
   ngOnInit(): void {
-    this.usuarioscount = 0;
-    this.admincount = 0;
-    this.proovedorcount = 0;
-    this.totalcount = 0;
-    this.baneadoscount = 0;
+    
     this.getUsuarios();
     
   }
@@ -37,6 +33,11 @@ export class AdministrarUsuariosComponent implements OnInit {
     
   }
   contar(){
+    this.usuarioscount = 0;
+    this.admincount = 0;
+    this.proovedorcount = 0;
+    this.totalcount = 0;
+    this.baneadoscount = 0;
     for(let i in this.usuarios){
       this.totalcount +=1;
     if(this.usuarios[i].tipo_usuario == 3){
@@ -77,6 +78,7 @@ export class AdministrarUsuariosComponent implements OnInit {
               'success'
             )
             this.getUsuarios();
+            this.contar();
           },
           err => console.log(err)
         )
@@ -84,16 +86,17 @@ export class AdministrarUsuariosComponent implements OnInit {
       }
     })
   }
+  
 
   banear(id: string){
     Swal.fire({
       title: 'Estas seguro?',
-      text: "Tu no puedes revertir esto!",
+      text: "",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, banealo!',
+      confirmButtonText: 'Si, suspendelo!',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -103,10 +106,11 @@ export class AdministrarUsuariosComponent implements OnInit {
             
             Swal.fire(
               'Operacion Exitosa!',
-              'Eliminacion.',
+              'Suspencion.',
               'success'
             )
             this.getUsuarios();
+            this.contar();
           },
           err => console.log(err)
         )
@@ -114,6 +118,35 @@ export class AdministrarUsuariosComponent implements OnInit {
       }
     })
   }
-  
+  desbanear(id: string){
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, restauralo!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.banear(id).subscribe(
+          res =>{
+            console.log(res)
+            
+            Swal.fire(
+              'Operacion Exitosa!',
+              'Restauracion.',
+              'success'
+            )
+            this.getUsuarios();
+            this.contar();
+          },
+          err => console.log(err)
+        )
+        
+      }
+    })
+  }
  
 }
